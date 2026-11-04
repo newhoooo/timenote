@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">时刻</string>
+    <string name="accessibility_description">识别你主动选择的应用何时进入和离开前台，记录使用时长并显示计时药丸。仅使用窗口类型与应用包名，不保存屏幕文字、聊天内容或输入内容。可随时在系统设置关闭。</string>
+</resources>
