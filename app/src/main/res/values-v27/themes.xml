@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.Moment" parent="Theme.Moment.Base">
+        <item name="android:navigationBarColor">#FAF8F4</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>
