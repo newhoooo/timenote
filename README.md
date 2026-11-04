@@ -2,7 +2,9 @@
 
 Android 原生个人时间记录原型，应用 ID：`app.moment.tracker`。最低 Android 8.0（API 26），目标 Android 15（API 35）。
 
-**交付状态：源码原型，尚未完成 Android 编译和真机验证，没有已生成的 APK。** 当前环境的联网构建依赖下载未能执行，不能把下列实现视为已通过手机实测。
+**交付状态：已生成 0.1.0 调试版 APK，Android 云端编译、单元测试、lint 和签名验证通过；尚未真机验证。**
+
+源码位于 [newhoooo/timenote 的构建分支](https://github.com/newhoooo/timenote/tree/codex/moment-apk-20261104)，本次成功构建见 [GitHub Actions](https://github.com/newhoooo/timenote/actions/runs/41760688061)。APK 包名为 `app.moment.tracker`，支持 Android 8.0 及以上。
 
 ## 已写入的功能
 
@@ -50,7 +52,7 @@ $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
 
 输出 APK：`app/build/outputs/apk/debug/app-debug.apk`。调试签名用于个人测试。
 
-项目附有 `.github/workflows/android.yml`；**尚未推送或运行此工作流**。将工程放进你自己的 GitHub 仓库后，可手动运行工作流并在 artifacts 下载 APK；若编译失败，先查看实际构建错误。
+项目附有 `.github/workflows/android.yml`，已在仓库构建分支运行成功。可以在成功的 Actions 任务下下载 `moment-debug-apk` 产物，解压得到 `app-debug.apk`。后续构建可通过推送构建分支触发；默认分支也加入工作流后可手动运行。当前 APK 使用调试签名，不用于应用商店发布。不同云构建可能使用不同调试密钥，后续更新需要规划固定签名以保留原有安装数据。
 
 ## 无 Android SDK 的核心测试
 
@@ -60,7 +62,7 @@ sh tools/test-core.sh
 
 测试直接编译执行生产代码的 `SessionClock`、`ReminderWindow` 和 `UsageMath`，覆盖暂停和续计、倒计时只提醒一次、超时、周末/休息时段、夏令时、跨天区间分摊以及随机时间约束。
 
-本环境实际结果：**8,023 项行为断言通过**；5 个 Android XML 文件解析通过。尚未执行 Gradle/JUnit、Android lint、安装或真机交互测试。
+实际验证结果：**8,023 项核心行为断言通过**；云端 Gradle 编译通过；4 项 JUnit 测试全部通过；Android lint 为 0 错误、17 警告；APK v2 签名验证通过。未执行手机安装或真机交互测试。完整记录见 [BUILD_REPORT.md](BUILD_REPORT.md)。
 
 ## 手机首次使用
 
@@ -89,7 +91,7 @@ sh tools/test-core.sh
 
 ## 首版限制和后续工作
 
-- 必须先通过 Android 编译、lint 和真机验收，当前不能承诺可安装或无故障运行。
+- 已通过 Android 编译、JUnit、lint 与 APK 签名验证；实际悬浮交互、前台识别和后台持续运行仍需手机验收。
 - Shizuku 只有连接和授权功能；特权前台查询需要按机型验证后再实现。
 - 分屏仅按获得焦点的 APP 记录；后台音频不作为前台使用时长。
 - 没有 JSON 导入恢复、云同步、每日使用额度倒计时、复杂统计图和分类编辑。

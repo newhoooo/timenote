@@ -5,11 +5,11 @@
 - [x] 核心生产算法 Java 编译与 8,023 项行为断言。
 - [x] Android Manifest、无障碍配置、图标、主题、字符串 XML 解析。
 
-## 构建与安装（未执行）
+## 构建与安装
 
-- [ ] `:app:testDebugUnitTest` 通过。
-- [ ] `:app:lintDebug` 通过。
-- [ ] `:app:assembleDebug` 通过，检查 APK 元数据和签名。
+- [x] `:app:testDebugUnitTest` 通过：4 项测试，0 失败。
+- [x] `:app:lintDebug` 通过：0 错误、17 警告。
+- [x] `:app:assembleDebug` 通过，包名、版本、最低 SDK 与 v2 签名已验证。
 - [ ] 手机安装 APK，四个主页面可用。
 
 ## 悬浮交互（未执行）
